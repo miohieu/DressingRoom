@@ -15,16 +15,59 @@ export function mapNavPills() {
              <button class="btn btn-outline-warning" onclick=mapWell("${el.type}")>
              ${el.showName} 
              </button>
-            </li>`
+             </li>`
     }
     )
     navPills.innerHTML = content
 }
-window.show = (type) => {
-const array = tabItems.filter(el => el.type === type)
+window.show = (type, id) => {
+    const array = tabItems.filter(el => el.type === type)
+    let t = ``;
+    const i = `${type}`
+    if (type === "shoes") {
+        t = ".feet"
+    }
 
-    console.log("array", array)
 
+
+    if (type === "handbags") {
+        t = ".handbag"
+    }
+
+    if (type === "hairstyle") {
+        t = ".hairstyle"
+    }
+
+    if (type === "necklaces") {
+        t = ".necklace"
+    }
+    if (type === "background") {
+        t = ".background"
+        const imgLink = array.find(e => e.id === id).imgSrc_png
+        const div = getDom(t)
+        div.style.backgroundImage = `url(${imgLink})`
+        return
+    }
+    if (type === "topclothes") {
+
+        t = ".topclothes"
+        const imgLink = array.find(e => e.id === id).imgSrc_png
+        const div = getDom(t)
+        div.style.backgroundImage = `url(${imgLink})`
+
+        return
+    }
+    if (type === "botclothes") {
+        t = ".botclothes"
+        const imgLink = array.find(e => e.id === id).imgSrc_png
+        console.log("link", imgLink)
+        const div = getDom(t)
+        div.style.backgroundImage = `url(${imgLink})`
+        return
+    }
+    const imgLink = array.find(e => e.id === id).imgSrc_png
+    const div = getDom(t)
+    div.innerHTML = `<img src="${imgLink}">`
 }
 
 window.mapWell = (type) => {
@@ -32,14 +75,15 @@ window.mapWell = (type) => {
     let content = "";
     tabItems.filter(e => e.type === type).map(el => {
         content += `
+
         <img src="${el.imgSrc_jpg}"
-         onclick=show("${type}") 
-        style=p
-            width:"400px"
-        }> 
+         onclick= "show('${el.type}' , '${el.id}')"
+        style="{
+            width:300
+        }">         <span>${el.name} </span> 
         `
 
-        well.innerHTML = content
     })
+    well.innerHTML = content
 
 }

@@ -158,3 +158,27 @@ hr {
   border: none;
   padding-top: 30px;
 }
+
+.topclothes {
+  width: 250px;
+  height: 300px;
+  object-fit: contain;
+  background: url("./../images/clothes/topcloth1.png");
+  background-size: 100%;
+  position: absolute;
+  top: 12%;
+  left: 22%;
+  z-index: 2;
+}
+
+.botclothes {
+  width: 280px;
+  height: 330px;
+  object-fit: contain;
+  background: url("./../images/clothes/botcloth2.png");
+  background-size: 100%;
+  position: absolute;
+  top: 10%;
+  left: 19%;
+  z-index: 2;
+}
