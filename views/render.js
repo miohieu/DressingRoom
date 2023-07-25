@@ -20,7 +20,29 @@ export function mapNavPills() {
     )
     navPills.innerHTML = content
 }
+window.mapWell = (type) => {
+    const well = getDom(".well")
+    let content = "";
+    tabItems.filter(e => e.type === type).map(el => {
+        content += `
+
+        <img class="${el.id}" src="${el.imgSrc_jpg}"
+         onclick= "show('${el.type}' , '${el.id}')"
+        style="{
+            width:299
+        }">         <span>${el.name} </span> 
+        `
+
+    })
+    well.innerHTML = content
+
+}
 window.show = (type, id) => {
+    const imgDiv = getDom(`.${id}`)
+
+    if(imgDiv) {
+        imgDiv.classList.toggle("active")
+    }
     const array = tabItems.filter(el => el.type === type)
     let t = ``;
     const i = `${type}`
@@ -70,20 +92,4 @@ window.show = (type, id) => {
     div.innerHTML = `<img src="${imgLink}">`
 }
 
-window.mapWell = (type) => {
-    const well = getDom(".well")
-    let content = "";
-    tabItems.filter(e => e.type === type).map(el => {
-        content += `
 
-        <img src="${el.imgSrc_jpg}"
-         onclick= "show('${el.type}' , '${el.id}')"
-        style="{
-            width:300
-        }">         <span>${el.name} </span> 
-        `
-
-    })
-    well.innerHTML = content
-
-}
